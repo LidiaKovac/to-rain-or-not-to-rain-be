@@ -15,7 +15,8 @@ const token = tokenAuth?.replace("Bearer", "")}
 
 - **Route.get() requires a callback function but got a [object Object]** when calling the middleware
   - Changed the exports of the middleware from: 
-```module.exports = {
+```
+module.exports = {
   authMW: authorize
 };
 ```
