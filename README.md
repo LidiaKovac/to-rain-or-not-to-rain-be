@@ -5,14 +5,17 @@
 - Async functions return Promise<T> as type. Replace T with what your funciton returns. In case of endpoints, you will probably only send, never return, so it's of type void. 
 
 - **req.header("Authorization").replace("Bearer ", "") - error TS2532: Object is possibly 'undefined'**
-**WARNING! This will not work, see below **
+
+**WARNING! This will not work, see below**
 ```js
 import { ClientRequestArgs } from 'http'; //this is a core module
 const headers:ClientRequestArgs = req.headers;
 const tokenAuth = headers.auth; 
 const token = tokenAuth?.replace("Bearer", "")}
 ```
-**Because the headers we send are not the same "format" http provides, tokenAuth will be undefined. Instead, do: **
+
+**Because the headers we send are not the same "format" http provides, tokenAuth will be undefined. Instead, do:**
+
 ```js
   const headers = req.headers
     const tokenAuth = headers.authorization
