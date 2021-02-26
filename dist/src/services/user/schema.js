@@ -20,6 +20,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose")); //gotta import the types from mongoose directly
+const bcrypt = require("bcryptjs");
 const UserSchema = new mongoose_1.Schema({
     complete_name: {
         type: String,

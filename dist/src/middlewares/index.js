@@ -9,12 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const userRTR = require("express").Router();
-userRTR.get("/", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const userModel = require("../services/user/schema");
+const { verifyJWT } = require("./tools");
+const authorize = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
+        const headers = req.headers;
+        const token = yield ((_a = headers.authorization) === null || _a === void 0 ? void 0 : _a.replace("Bearer ", ""));
+        const decoded = yield verifyJWT(token);
+        const user = yield userModel.findById({
+            _id: decoded._id,
+        });
+        if (!user) {
+            throw new Error("User not found");
+        }
+        req.body.token = token;
+        req.body.user = token;
+        next();
     }
-    catch (error) {
-        next(error);
+    catch (e) {
+        next(e);
     }
-}));
-module.exports = userRTR;
+});
+module.exports = authorize;

@@ -1,19 +1,20 @@
+import { Router } from "express";
+
 const mongoose = require("mongoose")
 const express = require("express");
 const cors = require("cors");
 const endpoints = require("express-list-endpoints");
 const server = express();
-const services = require("./services");
 
 const port = process.env.PORT;
 
-const userRouter = require("./services/user")
-const weatherRouter = require("./services/weather")
+const userRouter:Router = require("./services/user")
+const weatherRouter:Router = require("./services/weather")
 
 server.use(express.json());
 server.use(cors());
-server.use(userRouter, "/user")
-server.use(weatherRouter, "/weather")
+server.use("/user", userRouter )
+server.use("/weather", weatherRouter)
 
 mongoose
   .connect(process.env.MONGO_DB_URL, {
@@ -23,7 +24,7 @@ mongoose
   })
   .then(
     server.listen(port, () => {
-      console.log("✅  Server is running on port " + port + "with endpoints: " + endpoints(server));
+      console.log("✅  Server is running on port " + port );
     })
   )
   .catch((err:Error) => console.log("❌ Error : " + err));

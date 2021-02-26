@@ -1,4 +1,7 @@
 import mongoose, {Schema} from "mongoose" //gotta import the types from mongoose directly
+import {User} from "../../interfaces"
+
+const bcrypt = require("bcryptjs")
 
 const UserSchema = new Schema(
     {
@@ -19,4 +22,5 @@ const UserSchema = new Schema(
     }
 )
 const userModel = mongoose.model("user", UserSchema)
+
 module.exports = userModel
