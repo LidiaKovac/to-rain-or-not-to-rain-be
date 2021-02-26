@@ -1,6 +1,8 @@
 # to-rain-or-not-to-rain-be - TypeScript REST API
-
-When building this app I faced many issues: this is what issues they were and how I solved them: 
+## General things to remember if trying to build a REST API with ExpressJS and TS: 
+- Request and Response are both basic TS interfaces and express interfaces. You want to use the express one, so remember to import them. 
+- NextFunction is the interface for next() and is also imported from ExpressJS. 
+- Async functions return Promise<T> as type. Replace T with what your funciton returns. In case of endpoints, you will probably only send, never return, so it's of type void. 
 
 - **req.header("Authorization").replace("Bearer ", "") - error TS2532: Object is possibly 'undefined'**
 ```js
