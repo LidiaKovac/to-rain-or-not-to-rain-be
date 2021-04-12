@@ -1,4 +1,7 @@
 import { Router } from "express";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const mongoose = require("mongoose")
 const express = require("express");
