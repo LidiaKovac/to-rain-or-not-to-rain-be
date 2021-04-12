@@ -7,7 +7,6 @@ const axios = require("axios")
 
 weatherRTR.get(
 	"/:city",
-	authorize,
 	async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const response = await axios.get(
