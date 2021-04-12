@@ -2,8 +2,10 @@
   "name": "to-rain-or-not-to-rain-be",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
+    "start": "node ./dist",
+    "build": "tsc",
     "dev": "nodemon -r dotenv/config ./src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
